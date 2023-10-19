@@ -1,0 +1,11 @@
+.terraform
+.terraform*
+tmp
+*.env
+*-env.json
+*-secrets.json
+*.pem
+*.crt
+*.key
+*.dump
+.DS_Store
