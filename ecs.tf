@@ -8,7 +8,7 @@ resource "aws_ecs_service" "frontend" {
   task_definition = aws_ecs_task_definition.frontend-image.arn
 
   launch_type = "EC2"
-  desired_count   = 3
+  desired_count   = 2
 
   load_balancer {
     target_group_arn = aws_alb_target_group.surfy-tg.arn
