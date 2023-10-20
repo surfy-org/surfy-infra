@@ -7,7 +7,7 @@ resource "aws_ecs_service" "frontend" {
   cluster         = aws_ecs_cluster.ecs_cluster.id
   task_definition = aws_ecs_task_definition.frontend-image.arn
   launch_type     = "EC2"
-  desired_count   = 2
+  desired_count   = 5
 
   load_balancer {
     target_group_arn = aws_alb_target_group.surfy-tg.arn
@@ -18,10 +18,6 @@ resource "aws_ecs_service" "frontend" {
   ordered_placement_strategy {
     type  = "spread"
     field = "instanceId"
-  }
-
-  lifecycle {
-    ignore_changes = [desired_count]
   }
 
   depends_on = [aws_ecs_task_definition.frontend-image]
