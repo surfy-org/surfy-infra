@@ -11,16 +11,16 @@ resource "aws_lb" "ecs-alb" {
   enable_deletion_protection = false
 
   tags = {
-    Name = "production-alb"
+    Name        = "production-alb"
     Environment = "production"
   }
 }
 
 resource "aws_alb_target_group" "surfy-tg" {
-  name          = "surfy-target-group"
-  port          = 80
-  protocol      = "HTTP"
-  vpc_id        = aws_vpc.vpc.id
+  name     = "surfy-target-group"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = aws_vpc.vpc.id
 
   deregistration_delay = 5
 

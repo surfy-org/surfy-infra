@@ -1,9 +1,9 @@
 terraform {
-    backend "s3" {
-        bucket = "surfy-terraform"
-        key    = "terraform.tfstate"
-        region = "eu-west-3"
-    }
+  backend "s3" {
+    bucket = "surfy-terraform"
+    key    = "terraform.tfstate"
+    region = "eu-west-3"
+  }
 }
 
 provider "aws" {

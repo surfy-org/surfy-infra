@@ -6,18 +6,17 @@ resource "aws_ecs_service" "frontend" {
   name            = "surfy-frontend-service"
   cluster         = aws_ecs_cluster.ecs_cluster.id
   task_definition = aws_ecs_task_definition.frontend-image.arn
-
-  launch_type = "EC2"
+  launch_type     = "EC2"
   desired_count   = 2
 
   load_balancer {
     target_group_arn = aws_alb_target_group.surfy-tg.arn
-    container_name = "frontend-web"
-    container_port = 3000
+    container_name   = "frontend-web"
+    container_port   = 3000
   }
 
   ordered_placement_strategy {
-    type = "spread"
+    type  = "spread"
     field = "instanceId"
   }
 
@@ -26,16 +25,16 @@ resource "aws_ecs_service" "frontend" {
   }
 
   depends_on = [aws_ecs_task_definition.frontend-image]
- 
+
   tags = {
-    Name = "Production ECS Service Frontend name"
+    Name        = "Production ECS Surfy Service Frontend"
     Environment = "production"
   }
 }
 
 resource "aws_ecs_task_definition" "frontend-image" {
-  family                = "production-frontend"
-  network_mode          = "bridge"
+  family       = "production-frontend"
+  network_mode = "bridge"
   container_definitions = jsonencode([
     {
       name      = "frontend-web"
@@ -49,8 +48,8 @@ resource "aws_ecs_task_definition" "frontend-image" {
           protocol      = "tcp"
         }
       ],
-      environment: [
-        {"name": "PORT", "value": "3000"},
+      environment : [
+        { "name" : "PORT", "value" : "3000" },
       ]
     }
   ])
