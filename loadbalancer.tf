@@ -8,7 +8,7 @@ resource "aws_lb" "ecs-alb" {
   idle_timeout = 30
   enable_http2 = true
 
-  enable_deletion_protection = true
+  enable_deletion_protection = false
 
   tags = {
     Name = "production-alb"
