@@ -49,3 +49,15 @@ resource "aws_lb_listener" "frontend-http-listener" {
     type             = "forward"
   }
 }
+
+resource "aws_lb_listener" "frontend-https-listener" {
+  load_balancer_arn = aws_lb.ecs-alb.arn
+  port              = "443"
+  protocol          = "HTTPS"
+  certificate_arn   = aws_acm_certificate.cert.arn
+
+  default_action {
+    target_group_arn = aws_alb_target_group.surfy-tg.arn
+    type             = "forward"
+  }
+}
